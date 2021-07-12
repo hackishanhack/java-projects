@@ -1,0 +1,25 @@
+/* Write a program for your robot to make him understand your emotions.*/
+import java.util.Scanner;
+public class Program {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        String emotion = sc.nextLine();
+
+        switch(emotion) {
+            case "happy":
+                System.out.println("YOU ARE HAPPY");
+                break;
+            case "sad":
+                System.out.println("YOU ARE SAD");
+                break;
+            case "angry":
+                System.out.println("YOU ARE ANGRY");
+                break;
+            case "surprised":
+                System.out.println("YOU ARE SURPRISED");
+                break;
+            default:
+                System.out.println("UNKNOWN");
+        }
+    }
+}
