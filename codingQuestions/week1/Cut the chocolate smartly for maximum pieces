@@ -1,0 +1,39 @@
+c code
+#include <stdio.h>
+
+long maxPieces(long k)
+{
+    return (k / 2) * (k - (k / 2));
+}
+
+int main()
+{
+    int k = 7;
+    printf("%ld", maxPieces(k));
+
+    return 0;
+}
+
+Python
+def maxPieces(k):
+    return (k // 2) * (k - (k // 2))
+
+    
+if __name__ == '__main__':
+    k = 10
+    print(maxPieces(k))
+   
+Java
+public class Main
+{
+    static long maxPieces(long k)
+    {
+        return (k / 2) * (k - (k / 2));
+    }
+    
+    public static void main(String args[])
+    {
+        int k = 10;
+        System.out.print(maxPieces(k));
+    }
+}
