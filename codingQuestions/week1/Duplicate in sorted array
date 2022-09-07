@@ -1,0 +1,87 @@
+approach 1
+#include <stdio.h>
+int removeDuplicates(int arr[], int n){
+   int res[n];
+   res[0] = arr[0];
+   int i = 1, j = 1;
+   while (i < n){
+       if (arr[i] != arr[i-1]){
+           res[j] = arr[i];
+           j++;
+       }
+       i++;
+   }
+   for (i=0; i<j; i++)
+       arr[i] = res[i];
+    return j;
+}
+ 
+int main() {
+   int arr[] = {2, 2, 4, 4, 4, 5};
+   int n = sizeof(arr) / sizeof(arr[0]);
+   n = removeDuplicates(arr, n);
+   for (int i=0; i<n; i++)
+       printf("%d ", arr[i]);
+   return 0;
+}
+
+Approach 2
+#include <stdio.h>
+int removeDuplicates(int arr[], int n){
+   int i = 1, j = 1;
+   while (i < n){
+       if (arr[i] != arr[i-1]){
+           arr[j] = arr[i];
+           j++;
+       }
+       i++;
+   }
+   return j;
+}
+ 
+int main() {
+   int arr[] = {2, 2, 4, 4, 4, 5};
+   int n = sizeof(arr) / sizeof(arr[0]);
+   n = removeDuplicates(arr, n);
+   for (int i=0; i<n; i++)
+       printf("%d ", arr[i]);
+   return 0;
+}
+Python
+def removeDuplicates(arr,n):
+    i = 1;j = 1
+    while (i < n):
+        if (arr[i] != arr[i-1]):
+            arr[j] = arr[i]
+            j+=1
+        i+=1
+    return arr[0:j]
+
+if __name__ == "__main__":
+    arr = [2, 2, 4, 4, 4, 5]
+    arr = removeDuplicates(arr, len(arr))
+    print(' '.join(str(x) for x in arr))
+    
+Java
+import java.util.Scanner;
+public class Main {
+   public static int removeDuplicates(int arr[], int n){
+       int i = 1, j = 1;
+       while (i < n){
+           if (arr[i] != arr[i-1]){
+               arr[j] = arr[i];
+               j++;
+           }
+           i++;
+       }
+       return j;
+   }
+  
+   public static void main(String args[]) {
+       int arr[] = {2, 2, 4, 4, 4, 5};
+       int n = arr.length;
+       n = removeDuplicates(arr, n);
+       for (int i=0; i<n; i++)
+           System.out.print(arr[i]+" ");
+   }
+}
