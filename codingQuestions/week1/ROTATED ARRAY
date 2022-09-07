@@ -1,0 +1,14 @@
+#include<bits/stdc++.h>
+using namespace std;
+// Print the answer of each query, separated by space
+void solveQueries(int n, int r, int arr[], int q, int qu[]) {
+  // Write your code here
+   r = r%n;
+  for(int i=0;i<q;i++)
+  {
+    int idx = (r+qu[i]+n)%n;
+    cout<<arr[idx]<<" ";
+  }
+ //4 5 6 7 1 2 3
+ //0 1 2 3 4 5 6
+}
