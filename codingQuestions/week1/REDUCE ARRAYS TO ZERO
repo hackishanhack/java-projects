@@ -1,0 +1,161 @@
+APPROACH 1
+#include <bits/stdc++.h>
+using namespace std;
+
+int findMin(int arr[], int n)
+{
+    int min = INT_MAX;
+    for (int i = 0; i < n; i++)
+        if (arr[i] && arr[i] < min)
+            min = arr[i];
+    return min;
+}
+
+int reduceSticks(int lengths[], int n, int minStick)
+{
+    int remainingSticks = 0;
+    for (int i = 0; i < n; i++)
+    {
+        if (lengths[i])
+        {
+            lengths[i] -= minStick;
+            if (lengths[i])
+                remainingSticks++;
+        }
+    }
+    return remainingSticks;
+}
+
+void cutTheSticks(int lengths[], int n)
+{
+    int remainingSticks = n;
+    while (remainingSticks > 0)
+    {
+        cout << remainingSticks << " ";
+        int minStick = findMin(lengths, n);
+        remainingSticks = reduceSticks(lengths, n, minStick);
+    }
+}
+
+int main()
+{
+    int lengths[] = {5, 4, 4, 2, 2, 8};
+    int n = sizeof(lengths) / sizeof(lengths[0]);
+    
+    cutTheSticks(lengths, n);
+
+    return 0;
+}
+
+APPROACH 2
+#include <bits/stdc++.h>
+using namespace std;
+
+void cutTheSticks(int lengths[], int n)
+{
+    int remainingSticks = n;
+    sort(lengths, lengths + n);
+    
+    for(int i=0; i<n; i++)
+    {
+        cout << remainingSticks << " ";
+        int count = 1;
+        while (i+1 < n && lengths[i] == lengths[i+1])
+        {
+            count++;
+            i++;
+        }
+        remainingSticks -= count;
+    }
+}
+
+int main()
+{
+    int lengths[] = {5, 4, 4, 2, 2, 8};
+    int n = sizeof(lengths) / sizeof(lengths[0]);
+    
+    cutTheSticks(lengths, n);
+
+    return 0;
+}
+C
+#include <stdio.h>
+#include <stdlib.h>
+
+int cmpfunc (const void * a, const void * b)
+{
+   return ( *(int*)a - *(int*)b );
+}
+
+void cutTheSticks(int lengths[], int n)
+{
+    int remainingSticks = n;
+    qsort(lengths, n, sizeof(int), cmpfunc);
+    
+    for(int i=0; i<n; i++)
+    {
+        printf("%d ", remainingSticks);
+        int count = 1;
+        while (i+1 < n && lengths[i] == lengths[i+1])
+        {
+            count++;
+            i++;
+        }
+        remainingSticks -= count;
+    }
+}
+
+int main()
+{
+    int lengths[] = {5, 4, 4, 2, 2, 8};
+    int n = sizeof(lengths) / sizeof(lengths[0]);
+    
+    cutTheSticks(lengths, n);
+
+    return 0;
+}
+PYTHON
+def cutTheSticks(lengths,n):
+    remainingSticks = n
+    lengths.sort()
+    i = 0
+    while(i<n):
+        print(remainingSticks,end=' ')
+        count=1
+        while(i+1 < n and lengths[i] == lengths[i+1]):
+            count+=1
+            i+=1
+        remainingSticks -= count
+        i+=1
+
+
+if __name__ == '__main__':
+    lengths = [1, 2, 3, 4, 3, 3, 2, 1]
+    cutTheSticks(lengths,len(lengths))
+    
+JAVA
+import java.util.*;
+
+public class Main{
+    static void cutTheSticks(int lengths[], int n){
+        int remainingSticks = n;
+        Arrays.sort(lengths);
+        
+        for(int i=0; i<n; i++)
+        {
+            System.out.print(remainingSticks + " ");
+            int count = 1;
+            while (i+1 < n && lengths[i] == lengths[i+1])
+            {
+                count++;
+                i++;
+            }
+            remainingSticks -= count;
+        }
+    }
+    public static void main(String args[]){
+        int lengths[] = {1, 2, 3, 4, 3, 3, 2, 1};
+        int n = lengths.length;
+        cutTheSticks(lengths, n);
+    }
+}
