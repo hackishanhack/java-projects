@@ -1,0 +1,113 @@
+APPROACH 1(NAIVE)
+#include <iostream>
+using namespace std;
+
+int findMaxProfit(int price[], int n) {
+    int maxProfit = 0;
+    for (int i=0; i<n; i++)
+    {
+        for (int j=i+1; j<n; j++)
+        {
+            if (price[j] - price[i] > maxProfit)
+                maxProfit = price[j] - price[i];
+        }
+    }
+    return maxProfit;
+}
+
+
+int main() {
+    int price[] = {8, 2, 6, 7, 5};
+    int n = sizeof(price) / sizeof(price[0]);
+    cout << findMaxProfit(price, n);
+    return 0;
+}
+
+APPRAOCH 2(EFFIENCIENT)
+#include <iostream>
+using namespace std;
+
+int findMaxProfit(int price[], int n)
+{
+  int maxProfit = 0, minPrice = price[0];
+  for (int j = 1; j < n; j++)
+  {
+    if (price[j] - minPrice > maxProfit)
+      maxProfit = price[j] - minPrice;
+    if (price[j] < minPrice)
+      minPrice = price[j];
+  }
+  return maxProfit;
+}
+
+int main()
+{
+  int price[] = {8, 2, 6, 7, 5};
+  int n = sizeof(price) / sizeof(price[0]);
+  cout << findMaxProfit(price, n);
+  return 0;
+}
+
+C
+#include <stdio.h>
+
+int findMaxProfit(int price[], int n)
+{
+  int maxProfit = 0, minPrice = price[0];
+  for (int j = 1; j < n; j++)
+  {
+    if (price[j] - minPrice > maxProfit)
+      maxProfit = price[j] - minPrice;
+    if (price[j] < minPrice)
+      minPrice = price[j];
+  }
+  return maxProfit;
+}
+
+int main()
+{
+  int price[] = {8, 2, 6, 7, 5};
+  int n = sizeof(price) / sizeof(price[0]);
+  printf("%d", findMaxProfit(price, n));
+  return 0;
+}
+
+PYTHON
+def findMaxProfit(prices):
+    n = len(prices)
+    cost = 0
+    maxcost = 0
+    if (n == 0):
+        return 0
+    min_price = prices[0]
+    for j in range(n):
+        min_price = min(min_price, prices[j])
+        cost = prices[j] - min_price
+        maxcost = max(maxcost, cost)
+    return maxcost
+
+if __name__ == "__main__":
+  prices = [8, 2, 6, 7, 5]
+  print(findMaxProfit(prices))
+  
+JAVA
+public class Main {
+    static int findMaxProfit(int price[], int n)
+    {
+      int maxProfit = 0, minPrice = price[0];
+      for (int j = 1; j < n; j++)
+      {
+        if (price[j] - minPrice > maxProfit)
+          maxProfit = price[j] - minPrice;
+        if (price[j] < minPrice)
+          minPrice = price[j];
+      }
+      return maxProfit;
+    }
+    
+    public static void main(String args[]) {
+        int price[] = {8, 2, 6, 7, 5};
+        int n = price.length;
+        System.out.println(findMaxProfit(price, n));
+    }
+}
