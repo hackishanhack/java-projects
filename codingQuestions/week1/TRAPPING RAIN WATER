@@ -1,0 +1,157 @@
+APPROACH 1
+#include<bits/stdc++.h> 
+using namespace std; 
+
+int totalWater(int height[], int n) 
+{
+	int water = 0;
+
+	for (int i = 1; i < n-1; i++)
+	{
+		int left_max = height[i];
+		for (int j=0; j<i; j++)
+		    left_max = max(left_max, height[j]);
+		
+		int right_max = height[i];
+		for (int j=i+1; j<n; j++)
+		    right_max = max(right_max, height[j]); 
+
+	      water = water + (min(left_max, right_max) - height[i]); 
+	}
+	return water; 
+} 
+
+int main() 
+{ 
+	int height[] = {3, 1, 2, 0, 4}; 
+	int n = sizeof(height)/sizeof(height[0]); 
+	
+	cout << totalWater(height, n); 
+	return 0; 
+}
+
+APPRACH 2
+#include<bits/stdc++.h> 
+using namespace std; 
+
+int totalWater(int height[], int n) 
+{
+    int left[n];
+    int right[n];
+    int water = 0;
+
+    left[0] = height[0];
+    for (int i = 1; i < n; i++)
+        left[i] = max(left[i - 1], height[i]);
+        
+    right[n - 1] = height[n - 1];
+    for (int i = n - 2; i >= 0; i--)
+        right[i] = max(right[i + 1], height[i]);
+        
+    for (int i = 0; i < n; i++)
+        water += min(left[i], right[i]) - height[i]; 
+
+    return water; 
+} 
+
+int main() 
+{ 
+	int height[] = {3, 1, 2, 0, 4}; 
+	int n = sizeof(height)/sizeof(height[0]); 
+	
+	cout << totalWater(height, n); 
+	
+	return 0; 
+}
+C
+#include <stdio.h>
+
+int min(int x, int y) {
+    return x < y ? x : y;
+}
+
+int max(int x, int y) {
+    return x > y ? x : y;
+}
+
+int totalWater(int height[], int n) 
+{
+    int left[n];
+    int right[n];
+    int water = 0;
+
+    left[0] = height[0];
+    for (int i = 1; i < n; i++)
+        left[i] = max(left[i - 1], height[i]);
+        
+    right[n - 1] = height[n - 1];
+    for (int i = n - 2; i >= 0; i--)
+        right[i] = max(right[i + 1], height[i]);
+        
+    for (int i = 0; i < n; i++)
+        water += min(left[i], right[i]) - height[i]; 
+
+    return water; 
+} 
+
+int main() 
+{ 
+	int height[] = {3, 1, 2, 0, 4}; 
+	int n = sizeof(height)/sizeof(height[0]); 
+	
+	printf("%d", totalWater(height, n)); 
+	
+	return 0; 
+}
+PYTHON
+def totalWater(arr, n):
+	left = [0]*n
+	right = [0]*n
+	water = 0
+	left[0] = arr[0]
+	for i in range( 1, n):
+		left[i] = max(left[i-1], arr[i])
+	right[n-1] = arr[n-1]
+	for i in range(n-2, -1, -1):
+		right[i] = max(right[i + 1], arr[i]);
+	for i in range(0, n):
+		water += min(left[i], right[i]) - arr[i]
+	return water
+if __name__ == "__main__":
+  height = [3, 1, 2, 0, 4]
+  print(totalWater(height,len(height)));
+  
+JAVA
+import java.util.Scanner;
+class Result
+{
+    static int totalWater(int height[], int n) 
+    {
+        int[] left = new int[n];
+        int[] right = new int[n];
+        int water = 0;
+    
+        left[0] = height[0];
+        for (int i = 1; i < n; i++)
+            left[i] = Math.max(left[i - 1], height[i]);
+            
+        right[n - 1] = height[n - 1];
+        for (int i = n - 2; i >= 0; i--)
+            right[i] = Math.max(right[i + 1], height[i]);
+            
+        for (int i = 0; i < n; i++)
+            water += Math.min(left[i], right[i]) - height[i]; 
+    
+    	return water; 
+    }
+}
+class Main
+{
+  public static void main(String[] args)
+  {
+    int height[] = {3, 1, 2, 0, 4}; 
+	int n = height.length;
+	
+    System.out.print(Result.totalWater(height, n));
+  }
+}
